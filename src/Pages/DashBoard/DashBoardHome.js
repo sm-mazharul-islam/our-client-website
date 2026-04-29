@@ -1,66 +1,45 @@
-
-import React, { useEffect, useState } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Grid, IconButton, TablePagination } from '@mui/material';
-import UserForm from '../Services/Testimonial/UserForm';
-import UseAuth from '../../Hooks/UseAuth';
-import { Link } from 'react-router-dom';
-import './DashBoardHome.css'
+import React, { useEffect, useState } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Grid, IconButton } from "@mui/material";
+import UseAuth from "../../Hooks/UseAuth";
+import { Link } from "react-router-dom";
+import "./DashBoardHome.css";
 
 const DashBoardHome = () => {
-    const {user} = UseAuth();
+  const { user } = UseAuth();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-      const url = `http://localhost:7000/order?email=${user.email}`
-      fetch(url)
-          .then(res => res.json())
-          .then(data => setProducts(data))
-  })
+    const url = `http://localhost:7000/order?email=${user.email}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  });
 
-  const handleDelete = id  => {
+  const handleDelete = (id) => {
     const url = `http://localhost:7000/order/${id}`;
     fetch(url, {
-        method: 'DELETE'
+      method: "DELETE",
     })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if (data.deletedCount) {
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount) {
+          alert("Deleted");
+          const remaining = products.filter((service) => service._id !== id);
+          setProducts(remaining);
+        }
+      });
+  };
 
-                alert('Deleted')
-                const remaining = products.filter(service => service._id !==  id);
-                setProducts(remaining);
-
-            }
-
-
-        })
-
-
-
-
-      }
-
- 
-    return (
-<div>
-<h1>Ordered Item: {products.length}</h1>
-<Grid container spacing={2}>
-  <Grid item xs={12} sm={4}>
-    {/* <UserForm></UserForm> */}
-  </Grid>
-  <Grid item xs={12} sm={12}>
-
-  
-
-  {/* <TableContainer component={Paper} >
+  return (
+    <div>
+      <h1>Ordered Item: {products.length}</h1>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4}>
+          {/* <UserForm></UserForm> */}
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          {/* <TableContainer component={Paper} >
                 <Table sx={{minWidth: 650 }} aria-label="car table">
                     <TableHead>
                         <TableRow>
@@ -97,31 +76,25 @@ const DashBoardHome = () => {
                 </Table>
             </TableContainer> 
              */}
-            
-            <div class="container">
 
-  <table class="rwd-table">
-    <tbody>
-      <tr>
-   
-{/* 
+          <div class="container">
+            <table class="rwd-table">
+              <tbody>
+                <tr>
+                  {/* 
 
  */}
-        <th>   Order Email</th>
-        <th>Car Name</th>
-        <th>Customer Name</th>
-        <th>Car Image</th>
-        <th>Payment</th>
-        <th>Cancel</th>
-      </tr>
-      {products.map((row) => (
-      <tr>
-        <td data-th=" Order Email">
-
-        {row.email}
-    
-        </td>
-        {/* // <td data-th="Supplier Name">
+                  <th> Order Email</th>
+                  <th>Car Name</th>
+                  <th>Customer Name</th>
+                  <th>Car Image</th>
+                  <th>Payment</th>
+                  <th>Cancel</th>
+                </tr>
+                {products.map((row) => (
+                  <tr>
+                    <td data-th=" Order Email">{row.email}</td>
+                    {/* // <td data-th="Supplier Name">
         //   UPS
         // </td>
         // <td data-th="Invoice Number">
@@ -136,28 +109,40 @@ const DashBoardHome = () => {
         // <td data-th="Net Amount">
         //   $8,322.12
         // </td> */}
-          <td data-th="Car Name">
-          {row.packageName}
-        </td>
-          <td data-th="Customer Name">
-          {row.Name}
-        </td>
-          <td data-th="Car Image">
-        <img style={{width:'160px',height:'100px', boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.2)',borderRadius:'15px'}} src={row.packageImg
-} alt="" />
-        </td>
-          <td data-th="Payment">
-          {row.payment ? 'Paid' :
-                                <Link to={`/dashboard/payment/${row._id}`}><button>pay</button></Link>
-                                }
-        </td>
-          <td data-th="Delete">
-          <IconButton aria-label="delete" onClick={() => handleDelete(row._id)} >
-                             <DeleteIcon /> </IconButton>
-        </td>
-      </tr>
-        ))}
-      {/* <tr>
+                    <td data-th="Car Name">{row.packageName}</td>
+                    <td data-th="Customer Name">{row.Name}</td>
+                    <td data-th="Car Image">
+                      <img
+                        style={{
+                          width: "160px",
+                          height: "100px",
+                          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                          borderRadius: "15px",
+                        }}
+                        src={row.packageImg}
+                        alt=""
+                      />
+                    </td>
+                    <td data-th="Payment">
+                      {row.payment ? (
+                        "Paid"
+                      ) : (
+                        <Link to={`/dashboard/payment/${row._id}`}>
+                          <button>pay</button>
+                        </Link>
+                      )}
+                    </td>
+                    <td data-th="Delete">
+                      <IconButton
+                        aria-label="delete"
+                        onClick={() => handleDelete(row._id)}
+                      >
+                        <DeleteIcon />{" "}
+                      </IconButton>
+                    </td>
+                  </tr>
+                ))}
+                {/* <tr>
         <td data-th="Supplier Code">
         
         </td>
@@ -217,20 +202,14 @@ const DashBoardHome = () => {
           $12,335.69
         </td>
       </tr> */}
-    </tbody>
-  </table>
-  <h3  className='review'>Review Your Order</h3>
-</div>
-           
-
-
-
-
-
-  </Grid>
-</Grid>
-</div>
-    );
+              </tbody>
+            </table>
+            <h3 className="review">Review Your Order</h3>
+          </div>
+        </Grid>
+      </Grid>
+    </div>
+  );
 };
 
 export default DashBoardHome;

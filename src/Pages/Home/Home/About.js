@@ -15,13 +15,6 @@ import SecurityIcon from "@mui/icons-material/Security";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import DiamondIcon from "@mui/icons-material/Diamond";
-import { red, yellow } from "@mui/material/colors";
-import TimeToLeaveIcon from "@mui/icons-material/TimeToLeave";
-import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
-import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
-import EventSeatIcon from "@mui/icons-material/EventSeat";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import EngineeringIcon from "@mui/icons-material/Engineering";
 
 const About = () => {
   return (
