@@ -1,111 +1,91 @@
-import React from 'react';
-import './Footer.css'
+import React from "react";
+import { Link } from "react-router-dom"; // React Router ব্যবহার করা ভালো
+import "./Footer.css";
 
 const Footer = () => {
-    return (
-        <>
-            <header>
+  const today = new Date();
+  const year = today.getFullYear();
 
-            </header>
+  return (
+    <footer className="footer-container">
+      <div className="footer-content">
+        {/* Brand Section */}
+        <div className="footer-brand">
+          <h2 className="footer-logo">
+            BESA<span>RENTAL</span>
+          </h2>
+          <p className="footer-tagline">
+            Experience luxury on every mile. The most trusted car rental service
+            in the city.
+          </p>
+          <div className="social-links">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer">
+              Facebook
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer">
+              Twitter
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+          </div>
+        </div>
 
-            <main>
+        {/* Quick Links */}
+        <div className="footer-links">
+          <h3 className="nav-title">Services</h3>
+          <ul className="nav-ul">
+            <li>
+              <Link to="/">Premium Cars</Link>
+            </li>
+            <li>
+              <Link to="/">Luxury Sedans</Link>
+            </li>
+            <li>
+              <Link to="/">SUVs & Jeeps</Link>
+            </li>
+            <li>
+              <Link to="/">Wedding Special</Link>
+            </li>
+          </ul>
+        </div>
 
-            </main>
+        {/* Support Section */}
+        <div className="footer-links">
+          <h3 className="nav-title">Support</h3>
+          <ul className="nav-ul">
+            <li>
+              <Link to="/">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link to="/">Terms of Use</Link>
+            </li>
+            <li>
+              <Link to="/">Contact Us</Link>
+            </li>
+            <li>
+              <Link to="/">Sitemap</Link>
+            </li>
+          </ul>
+        </div>
 
-            <footer className="footer">
-                <img src="" alt="" />
-                {/* <div className="footer__addr">
-                    <h1 className="footer__logo">Something</h1>
+        {/* Newsletter or Contact */}
+        <div className="footer-contact">
+          <h3 className="nav-title">Contact Us</h3>
+          <p>Dhaka, Bangladesh</p>
+          <p>Email: supercar@gmail.com</p>
+          <button className="contact-btn">Book Now</button>
+        </div>
+      </div>
 
-                    <h2>Contact</h2>
-
-
-                    <p>5534 Somewhere In. The World 22193-10212</p>
-
-
-                    <a className="footer__btn" href="supercar@gmail.com">Email Us</a>
-
-
-                </div> */}
-
-                <ul className="footer__nav">
-                    <li className="nav__item">
-                        <h2 className="nav__title">Buy</h2>
-
-                        <ul className="nav__ul">
-                            <li>
-                                <a href="#">Online</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Print</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Alternative Ads</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li className="nav__item nav__item--extra">
-                       
-
-                        <ul className="nav__ul nav__ul--extra">
-                            <li>
-                                <a href="#">Hardware Design</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Software Design</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Digital Signage</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Automation</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Artificial Intelligence</a>
-                            </li>
-
-                            <li>
-                                <a href="#">IoT</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li className="nav__item">
-                        <h2 className="nav__title">Legal</h2>
-
-                        <ul className="nav__ul">
-                            <li>
-                                <a href="#">Privacy Policy</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Terms of Use</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Sitemap</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div className="legal">
-                    <p className='foot'>&copy; 2019 Something. All rights reserved.♥</p>
-
-                    {/* <div className="legal__links">
-                        <span>Made with <span class="heart">♥</span> remotely from Anywhere</span>
-                    </div> */}
-                </div>
-            </footer>
-        </>
-    );
+      <div className="footer-bottom">
+        <p>
+          &copy; {year} BESA RENTAL. Made with <span className="heart">♥</span>{" "}
+          by Mazharul.
+        </p>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
