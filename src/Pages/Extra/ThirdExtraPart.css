@@ -1,0 +1,116 @@
+.highway-section-wrapper {
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.highway-title {
+  font-weight: 900 !important;
+  color: #0f172a;
+  text-transform: uppercase;
+}
+
+.blue-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #2563eb;
+}
+
+.highway-accent {
+  width: 70px;
+  height: 5px;
+  background: #2563eb;
+  margin: 20px auto;
+  border-radius: 50px;
+}
+
+/* Realistic Asphalt Road Design */
+.real-highway-track {
+  background: #334155; /* Asphalt Gray */
+  height: 180px;
+  width: 100%;
+  border-radius: 20px; /* Highway feel */
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 10px solid #1e293b;
+  border-bottom: 10px solid #1e293b;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  margin: 40px 0;
+}
+
+/* Central Highway Divider (Yellow Lines) */
+.highway-yellow-line {
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #facc15,
+    /* Yellow divider */ #facc15 40px,
+    transparent 40px,
+    transparent 80px
+  );
+}
+
+.moving-car-vessel {
+  position: absolute;
+  width: 250px;
+  z-index: 10;
+  transition: left 0.1s linear;
+}
+
+.car-top-view-img {
+  width: 100%;
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.4));
+  transform: rotate(90deg); /* Horizontal alignment */
+}
+
+/* Info Cards Styling */
+.luxury-info-card {
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  border-radius: 20px;
+  transition: 0.4s ease;
+  height: 100%;
+}
+
+.luxury-info-card:hover {
+  transform: translateY(-8px);
+  border-color: #2563eb;
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
+}
+
+.card-heading {
+  color: #2563eb;
+  font-weight: 800 !important;
+  font-size: 1.2rem !important;
+  margin-bottom: 15px !important;
+}
+
+.card-paragraph {
+  color: #64748b;
+  line-height: 1.8 !important;
+  font-size: 1rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+  .real-highway-track {
+    height: 140px;
+  }
+  .moving-car-vessel {
+    width: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .real-highway-track {
+    height: 100px;
+    border-radius: 10px;
+  }
+  .moving-car-vessel {
+    width: 130px;
+  }
+  .luxury-info-card {
+    padding: 25px;
+  }
+}

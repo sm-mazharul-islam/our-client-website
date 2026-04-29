@@ -1,29 +1,106 @@
-import { Grid, Typography } from '@mui/material';
-import React from 'react';
+import { Grid, Typography, Box, Container } from "@mui/material";
+import React, { useEffect, useState, useRef } from "react";
+import "./ThirdExtraPart.css";
 
 const ThirdExtraPart = () => {
-    return (
-        <div>
-            <Typography variant='h4'> <b>Reserve you Favorite Car and Drive it <span style={{color:'blue'}}>Today</span> </b> </Typography>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
- 
-    <Grid item xs={12} sm={4} md={4} style={{ marginTop:'400px'}}>
-        <img style={{width:'40%'}} src="https://www.nicepng.com/png/detail/340-3406804_blue-bmw-m2-coupe-car-png-image-pngpix.png" alt="" />
-  <h2>Engines are one of the main parts on a car, No car can work without an engine. There are two different types of car engines one is gas turbine and the other is diesel engines. There is also an external combustion engine for example a steam boat or train. For internal combustion engines if you put a high energy gas in a small, enclosed space and ignite it, it will have an incredible amount of energy released.</h2>
-    </Grid>
-    <Grid item xs={12} sm={4} md={4} style={{marginTop:'150px', marginBottom:'150px' }} >
-     <img  style={{ width:'450px'}} src="https://cardealer.potenzaglobalsolutions.com/wp-content/uploads/2013/06/18.png.webp" alt="" />
-    </Grid>
-    <Grid item xs={12} sm={4} md={4}  style={{ marginTop:'400px'
-}} >
-        <img style={{width:'40%'}} src="https://tdrresearch.azureedge.net/photos/chrome/Expanded/White/2018MBS230001/2018MBS23000101.jpg" alt="" />
-  <h2>The first step is the piston will start at the top then the intake valve will open and the piston will move down to let the engine take in a cylinder that is filled with air and gas. This is an intake stroke; you only need a very small drop of gas to be mixed in to the air for this to work. The second step is the piston will then move
-Another main engine part is a spark plug </h2>
-    </Grid>
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const sectionRef = useRef(null);
+  const audioRef = useRef(null);
 
-</Grid>
-        </div>
-    );
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // ক্যালকুলেশন: সেকশনটি যখন ভিউপোর্টে আসবে তখন মুভমেন্ট শুরু হবে
+        const start = rect.top - windowHeight;
+        const total = rect.height + windowHeight;
+        const progress = Math.min(Math.max(-start / total, 0), 1);
+
+        setScrollPercentage(progress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const playEngineSound = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+      audioRef.current
+        .play()
+        .catch(() => console.log("Sound ready after click"));
+    }
+  };
+
+  return (
+    <Box
+      ref={sectionRef}
+      className="highway-section-wrapper"
+      sx={{ py: { xs: 8, md: 15 } }}
+    >
+      <audio ref={audioRef} src="/sounds/car-sound.mp3" preload="auto" />
+
+      <Container>
+        <Box sx={{ textAlign: "center", mb: { xs: 5, md: 10 } }}>
+          <Typography
+            variant="h2"
+            className="highway-title"
+            sx={{ fontSize: { xs: "2rem", md: "3.5rem" } }}
+          >
+            FAST TRACK TO <span className="blue-stroke">LUXURY</span>
+          </Typography>
+          <div className="highway-accent" />
+        </Box>
+
+        {/* --- The Realistic Highway --- */}
+        <Box className="real-highway-track">
+          <Box
+            className="moving-car-vessel"
+            onMouseEnter={playEngineSound}
+            style={{
+              left: `${scrollPercentage * 100}%`,
+              transform: `translateX(-${scrollPercentage * 100}%)`,
+            }}
+          >
+            <img
+              className="car-top-view-img"
+              src="https://cardealer.potenzaglobalsolutions.com/wp-content/uploads/2013/06/18.png.webp"
+              alt="Red Sports Car"
+            />
+            <div className="speed-vibration" />
+          </Box>
+
+          {/* Highway Markings */}
+          <div className="highway-yellow-line" />
+        </Box>
+
+        <Grid container spacing={4} sx={{ mt: { xs: 6, md: 12 } }}>
+          <Grid item xs={12} md={6}>
+            <Box className="luxury-info-card">
+              <Typography variant="h5" className="card-heading"></Typography>
+              <Typography className="card-paragraph">
+                engineered for stability and speed. Every curve on our fleet is
+                designed to minimize drag and maximize performance on the open
+                road.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box className="luxury-info-card">
+              <Typography variant="h5" className="card-heading"></Typography>
+              <Typography className="card-paragraph">
+                Drive with peace of mind. Our premium support team is always on
+                standby to ensure your journey is as smooth as the drive.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
 };
 
 export default ThirdExtraPart;

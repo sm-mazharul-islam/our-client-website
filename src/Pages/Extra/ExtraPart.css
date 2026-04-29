@@ -1,11 +1,105 @@
-.fullPart {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    height: 100%;
+.extra-light-wrapper {
+  background: #ffffff; /* Clean white background */
+  padding: 100px 0;
+}
 
+/* Stats Section Styling */
+.stats-light-bar {
+  background: #f8fafc;
+  border-radius: 24px;
+  padding: 40px 20px;
+  border: 1px solid #f1f5f9;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
 
-    background: url('https://www.hdnicewallpapers.com/Walls/Big/Lamborghini/4K_Car_Wallpaper_of_2019_Lamborghini_SC18_Alston.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.stat-num-light {
+  color: #2563eb !important;
+  font-weight: 800 !important;
+  font-family: "Poppins", sans-serif;
+}
+
+.stat-sub-light {
+  color: #64748b;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+}
+
+.stat-box-border {
+  border-right: 1px solid #e2e8f0;
+}
+
+/* Service Card Design */
+.service-card-light {
+  background: #ffffff;
+  padding: 45px 35px;
+  border-radius: 20px;
+  height: 100%;
+  position: relative;
+  border: 1px solid #f1f5f9;
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.service-card-light:hover {
+  transform: translateY(-10px);
+  border-color: transparent;
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  background: rgba(37, 99, 235, 0.05);
+  color: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  transition: 0.5s;
+}
+
+.service-card-light:hover .icon-circle {
+  background: #2563eb;
+  color: #fff;
+  transform: rotateY(360deg);
+}
+
+.card-title-light {
+  color: #0f172a;
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 15px !important;
+  letter-spacing: 0.5px;
+}
+
+.card-desc-light {
+  color: #64748b;
+  line-height: 1.7 !important;
+}
+
+/* Bottom accent line that appears on hover */
+.hover-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: #2563eb;
+  transition: 0.5s;
+}
+
+.service-card-light:hover .hover-line {
+  width: 100%;
+}
+
+/* Responsive Fix */
+@media (max-width: 600px) {
+  .stat-box-border {
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
 }

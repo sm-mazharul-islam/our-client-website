@@ -2,13 +2,12 @@ import React from "react";
 import ExtraPart from "../../Extra/ExtraPart";
 import SecondExtraPart from "../../Extra/SecondExtraPart";
 import LoadData from "../../Services/LoadService/LoadData";
-
-// import Testimonial from '../../Services/Testimonial/Testimonial';
 import Banner from "../../Shared/Banner";
 import Footer from "../../Shared/Footer";
 import Homes from "./Homes";
 import Modaretors from "./Modaretors/Modaretors";
 import Testimonial from "../../Services/Testimonial/Testimonial";
+import ThirdExtraPart from "../../Extra/ThirdExtraPart";
 
 // import Homes from './Homes';
 
@@ -17,6 +16,7 @@ const Home = () => {
     <div>
       <Banner></Banner>
       {/* <ThirdExtraPart></ThirdExtraPart> */}
+      <ThirdExtraPart />
       <Homes></Homes>
 
       <SecondExtraPart></SecondExtraPart>
