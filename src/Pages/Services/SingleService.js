@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -12,12 +13,12 @@ import {
   Card,
   Chip,
   Paper,
+  Dialog,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import BookingService from "./BookingService";
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
+import Footer from "../Shared/Footer";
+import { BASE_URL } from "../../utils/constants";
 
 // Icons
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
@@ -28,8 +29,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ElectricCarIcon from "@mui/icons-material/ElectricCar";
-import Footer from "../Shared/Footer";
-import { BASE_URL } from "../../utils/constants";
+import CloseIcon from "@mui/icons-material/Close";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosNewIcon from "@mui/icons-material/ArrowForwardIosNew";
 
 const SingleService = () => {
   const { _id } = useParams();
@@ -37,6 +39,7 @@ const SingleService = () => {
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Lightbox States
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
@@ -99,30 +102,114 @@ const SingleService = () => {
   return (
     <>
       <Box sx={{ pb: 10, background: "#f8fafc", minHeight: "100vh" }}>
-        {/* --- Lightbox --- */}
-        {isOpen && (
-          <Lightbox
-            mainSrc={galleryImages[photoIndex]}
-            nextSrc={galleryImages[(photoIndex + 1) % galleryImages.length]}
-            prevSrc={
-              galleryImages[
-                (photoIndex + galleryImages.length - 1) % galleryImages.length
-              ]
-            }
-            onCloseRequest={() => setIsOpen(false)}
-            onMovePrevRequest={() =>
-              setPhotoIndex(
-                (photoIndex + galleryImages.length - 1) % galleryImages.length,
-              )
-            }
-            onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % galleryImages.length)
-            }
-            reactModalStyle={{ overlay: { zIndex: 2000 } }}
-          />
-        )}
+        {/* --- Custom MUI Lightbox (Replacement for react-image-lightbox) --- */}
+        <Dialog
+          fullScreen
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          PaperProps={{
+            sx: {
+              backgroundColor: "rgba(0, 0, 0, 0.95)",
+              boxShadow: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            },
+          }}
+        >
+          <Box
+            sx={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {/* Close */}
+            <IconButton
+              onClick={() => setIsOpen(false)}
+              sx={{
+                position: "absolute",
+                top: 20,
+                right: 20,
+                color: "white",
+                bgcolor: "rgba(255,255,255,0.1)",
+                "&:hover": { bgcolor: "rgba(255,255,255,0.2)" },
+              }}
+            >
+              <CloseIcon fontSize="large" />
+            </IconButton>
 
-        {/* --- Dynamic Hero Section --- */}
+            {/* Prev */}
+            <IconButton
+              onClick={() =>
+                setPhotoIndex(
+                  (photoIndex + galleryImages.length - 1) %
+                    galleryImages.length,
+                )
+              }
+              sx={{
+                position: "absolute",
+                left: { xs: 10, md: 40 },
+                color: "white",
+                bgcolor: "rgba(255,255,255,0.1)",
+                p: 2,
+              }}
+            >
+              <ArrowBackIosNewIcon fontSize="large" />
+            </IconButton>
+
+            {/* Image */}
+            <Box
+              component="img"
+              src={galleryImages[photoIndex]}
+              alt="Luxury Car Gallery"
+              sx={{
+                maxHeight: "85vh",
+                maxWidth: "90vw",
+                objectFit: "contain",
+                borderRadius: "12px",
+              }}
+            />
+
+            {/* Next */}
+            <IconButton
+              onClick={() =>
+                setPhotoIndex((photoIndex + 1) % galleryImages.length)
+              }
+              sx={{
+                position: "absolute",
+                right: { xs: 10, md: 40 },
+                color: "white",
+                bgcolor: "rgba(255,255,255,0.1)",
+                p: 2,
+              }}
+            >
+              <ArrowForwardIosNewIcon fontSize="large" />
+            </IconButton>
+
+            {/* Counter */}
+            <Typography
+              sx={{
+                position: "absolute",
+                bottom: 40,
+                color: "white",
+                fontWeight: 700,
+                letterSpacing: 2,
+                bgcolor: "rgba(37, 99, 235, 0.8)",
+                px: 4,
+                py: 1,
+                borderRadius: "50px",
+              }}
+            >
+              {photoIndex + 1} / {galleryImages.length}
+            </Typography>
+          </Box>
+        </Dialog>
+
+        {/* --- Hero Section --- */}
         <Box
           sx={{
             background: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url(${service.picture || "https://wallpaperaccess.com/full/740013.jpg"})`,
@@ -207,7 +294,7 @@ const SingleService = () => {
                   border: "1px solid rgba(255,255,255,0.3)",
                 }}
               >
-                {/* Image with Glow Effect */}
+                {/* Main Image View */}
                 <Box
                   onClick={() => openLightbox(0)}
                   sx={{
@@ -249,7 +336,7 @@ const SingleService = () => {
                   </Box>
                 </Box>
 
-                {/* --- New: Spec Badges --- */}
+                {/* Specs */}
                 <Grid container spacing={2} sx={{ mb: 5 }}>
                   {[
                     {
@@ -328,7 +415,7 @@ const SingleService = () => {
                   {service.about}
                 </Typography>
 
-                {/* --- New: Why Choose Us Section --- */}
+                {/* Benefits */}
                 <Paper
                   elevation={0}
                   sx={{
@@ -431,7 +518,7 @@ const SingleService = () => {
               </Card>
             </Grid>
 
-            {/* Right Side Sticky Card */}
+            {/* Right Side Pricing & Booking */}
             <Grid item xs={12} md={5}>
               <Box sx={{ position: { md: "sticky" }, top: "120px" }}>
                 <Card
