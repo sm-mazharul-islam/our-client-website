@@ -38,7 +38,7 @@ const Register = () => {
     return (
         <>
 
-            <Container className='from' sx={{ width: 500 }} >
+            <Container className='from' sx={{ width: 350 }} >
                 <Grid container spacing={2} >
                     <Grid item sx={{ mt: 8 }} xs={12} md={12} >
                         {/* <Typography component="h1" variant="h5">

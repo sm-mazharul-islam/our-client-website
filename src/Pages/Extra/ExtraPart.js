@@ -61,14 +61,47 @@ const ExtraPart = () => {
 
                 <Grid container spacing={2} sx={{ paddingTop: '40px' }} >
                     {
-                        firstExtra.map(example => <ShowFirstPart
+                        firstExtra.map(example =><Grid item xs={12} sm={4} md={4}> <ShowFirstPart
                             key={example.id}
                             example={example}
-                        ></ShowFirstPart>)
+                        ></ShowFirstPart> 
+                        </Grid>
+                        )
                     }
                 </Grid>
             </Container>
-            <Typography variant='h4' sx={{ marginTop: '20px' }}>
+<Grid container spacing={2}>
+<Grid item xs={6} md={4} >
+
+<Typography variant='h4' sx={{ marginTop: '20px' }}>
+<CountUp style={{ color: 'white' }}
+
+start={150} end={10000} duration={12} prefix="users: " decimals={2}></CountUp>
+</Typography>
+
+</Grid>
+<Grid item xs={6} md={4} >
+
+<Typography variant='h4' sx={{ marginTop: '20px' }}>
+<CountUp style={{ color: 'white' }}
+
+end={50000} duration={10} prefix="reach: "></CountUp>
+</Typography>
+
+</Grid>
+<Grid item xs={12} md={4} >
+
+<Typography variant='h4' sx={{ marginTop: '20px' }}>
+<CountUp style={{ color: 'white' }}
+
+end={10000} duration={11} prefix="Super Car :" suffix="+"></CountUp>
+</Typography>
+
+</Grid>
+
+</Grid>
+
+            {/* <Typography variant='h4' sx={{ marginTop: '20px' }}>
 
                 <CountUp style={{ color: 'white', paddingRight: '450px' }}
 
@@ -80,7 +113,7 @@ const ExtraPart = () => {
 
                     end={10000} duration={11} prefix="Super Car :" suffix="+"></CountUp>
 
-            </Typography>
+            </Typography> */}
         </div>
    
     );

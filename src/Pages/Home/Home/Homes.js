@@ -17,7 +17,7 @@ const Homes = () => {
 
     const [cycle, setData] = useState([]);
     useEffect(() => {
-        fetch('https://nameless-thicket-17201.herokuapp.com/products')
+        fetch('http://localhost:7000/products')
             .then(res => res.json())
             .then(data => setData(data.slice(3,9)))
     }, [])
@@ -27,9 +27,9 @@ const Homes = () => {
         <>
             <Container>
                 <Box sx={{ flexGrow: 1 }} style={{ marginTop: '20px', paddingBottom: '50px' }}>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    <Grid container spacing={{ xs: 1, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
                         {
-                            cycle.map(article => <Grid item xs={2} sm={4} md={4}>
+                            cycle.map(article => <Grid item xs={12} sm={4} md={4}>
                                 <ServiceCard article={article}></ServiceCard>
 
                             </Grid>)

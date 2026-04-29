@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button, Container, Typography } from '@mui/material';
+import { Button, Container, Grid, Typography } from '@mui/material';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import UseAuth from '../../Hooks/UseAuth';
@@ -18,7 +18,7 @@ const BookingService = ({ service }) => {
     const navigate = useNavigate();
    
 
-    const initialInfo = { Name: user.displayName, email: user.email, phone: '' }
+    const initialInfo = { Name: user.displayName, email: user.email, phone: '',nid:'' }
     const [bookingInformation, setBookingInfo] = useState(initialInfo);
 
     const handleOnBlur = (e) => {
@@ -32,7 +32,7 @@ const BookingService = ({ service }) => {
     const handleBookingSubmit = (e) => {
         const bookingInfo = { ...bookingInformation, packageName: service.name, packageImg: service.picture, price: service.price, status: "pending" }
         console.log(bookingInfo);
-        fetch('https://nameless-thicket-17201.herokuapp.com/order', {
+        fetch('http://localhost:7000/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -47,17 +47,13 @@ const BookingService = ({ service }) => {
             });
         console.log();
         e.preventDefault();
+        alert('Booking Succesfully..Congratulations and go to dashboard payment first make sure ')
+   
+ 
     }
-
-
-
-
-
-
-
     return (
-  
-        <div className='order' >
+
+  <div className='order' >
             <h2>Enter Your information</h2>
             <form onSubmit={handleBookingSubmit} >
                 <TextField
@@ -83,11 +79,25 @@ const BookingService = ({ service }) => {
                     onBlur={handleOnBlur}
                     defaultValue="Phone Number"
                     size="small"
+                    required
+                />
+                <TextField
+                   required
+                    sx={{ width: '90%', m: 1 }}
+                    id="outlined-size-small"
+                    name="nid"
+                    onBlur={handleOnBlur}
+                    defaultValue="NID "
+                    size="small"
+                 
                 />
 
                 <Button type="submit" variant="contained">Submit</Button>
             </form>
         </div>
+  
+
+   
 
     );
 };

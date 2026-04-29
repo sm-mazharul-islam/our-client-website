@@ -12,7 +12,7 @@ import '../Login/Login.css'
 
 
 const Login = () => {
-    const { signUsingGoogle, loginUser, user, isLoading, authError } = UseAuth()
+    const { signUsingGoogle, loginUser, user, isLoading, authError, token } = UseAuth()
     const [loginData, setLoginData] = useState({});
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -34,10 +34,13 @@ const Login = () => {
         signUsingGoogle(location, navigate)
         // console.log(location);
     }
+    // if(token){
+    //     navigate('/services')
+    // }
     return (
         <>
 
-            <Container sx={{ width: 500 }} className="edit">
+            <Container sx={{ width: 350 }} className="edit">
                 <Grid container spacing={2} >
                     <Grid item sx={{ mt: 8 }} xs={12} md={12}>
                         <Typography variant="body1" style={{ fontSize: "3rem", color: "#33383b", }} gutterBottom>Login</Typography>

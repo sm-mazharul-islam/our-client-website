@@ -15,10 +15,12 @@ import {
     Link
    
 } from "react-router-dom";
-import { Button} from '@mui/material';
+import { Button, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography} from '@mui/material';
 import UseAuth from '../../Hooks/UseAuth';
 
-
+import InboxIcon from '@mui/icons-material/Inbox';
+import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 200;
 
@@ -32,10 +34,13 @@ function DashBoard(props) {
     };
 
     const drawer = (
-        <div >
+        <div  >
            
-           <Toolbar />
+           <Toolbar  />
             <Divider style={{paddingBottom:'12px'}}/>
+
+
+            
             <Box style={{  padding:'12px'}} >
             <Link to="/services" style={{textDecoration:'none', color:'black'}}><Button color="inherit">Services</Button></Link>
             <Divider />
@@ -58,10 +63,14 @@ function DashBoard(props) {
             <br />
                 <Link to={`/dashboard/addmodaretor`} style={{textDecoration:'none' , color:'black'}}><AdminPanelSettingsIcon/><Button color="inherit">Add Modaretor</Button></Link>
                 <Divider />
+            <br />
+                <Link to={`/dashboard/users`} style={{textDecoration:'none' , color:'black'}}><Button color="inherit">All Users</Button></Link>
+                <Divider />
                
                   </Box>}
                   
            </Box>
+           {/* ---------------- */}
        
             {/* <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -72,8 +81,8 @@ function DashBoard(props) {
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
-            </List> */}
-            {/* <Divider />
+            </List>
+            <Divider />
             <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
                     <ListItem button key={text}>
@@ -84,15 +93,17 @@ function DashBoard(props) {
                     </ListItem>
                 ))}
             </List> */}
+            {/* ------------------- */}
         </div>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex'  }} >
+        // -----------------------------
+        <Box sx={{ display: 'flex' }} >
             <CssBaseline />
-            {/* <AppBar
+            <AppBar
                 position="fixed"
                 sx={{
 
@@ -114,8 +125,10 @@ function DashBoard(props) {
                         Responsive drawer
                     </Typography>
                 </Toolbar>
-            </AppBar> */}
+            </AppBar>
             <Box
+            // ----------------------
+
                 component="nav" 
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"

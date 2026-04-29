@@ -6,15 +6,15 @@ import { NavLink } from 'react-router-dom';
 const SecondExtraPart = () => {
     return (
        
-            <Box>
+            <Box style={{margin:'auto'}}>
                 <Typography >
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={5} sx={{marginLeft:'20px'}}>
+                    <Container>                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6}  >
                             <img style={{ width: '100%' }} src="https://images.unsplash.com/photo-1555652736-e92021d28a10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YXVkaXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="" />
                         </Grid>
-                        <Grid item xs={12} sm={4} sx={{marginLeft:'200px', marginTop:'80px'}}>
+                        <Grid item xs={12} sm={6} >
                             <h2>ODI</h2>
-                            <p>The most impressive car sales from the first RM Sotheby’s auction in St. Moritz Posted 2021-09-22 On September 17, 2021, RM Sotheby’s conducted its first-ever boutique Swiss sale grossing an exceptional CHF16.5 million (approx. $18 million) with eight lots exceeding CHF1 million.USA's car market in 2021 rises by 2% with 14.95 million sales, reporting a very strong first half, followed by a double-digit fall in the second part of the year. Toyota conquers the market throne, overtaking Ford.</p>
+                            <p style={{textAlign:'justify'}}>The most impressive car sales from the first RM Sotheby’s auction in St. Moritz Posted 2021-09-22 On September 17, 2021, RM Sotheby’s conducted its first-ever boutique Swiss sale grossing an exceptional CHF16.5 million (approx. $18 million) with eight lots exceeding CHF1 million.USA's car market in 2021 rises by 2% with 14.95 million sales, reporting a very strong first half, followed by a double-digit fall in the second part of the year. Toyota conquers the market throne, overtaking Ford.</p>
                             <p>Give Your Rating....</p>
                             <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
                             <div className="btn" >
@@ -23,6 +23,8 @@ const SecondExtraPart = () => {
                         </Grid>
 
                     </Grid>
+                    </Container>
+
                 </Typography>
             </Box>
 

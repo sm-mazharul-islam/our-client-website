@@ -85,7 +85,7 @@ const UseFireBase = () => {
     }
 
 useEffect(()=>{
-fetch(`https://nameless-thicket-17201.herokuapp.com/users/${user.email}`)
+fetch(`http://localhost:7000/users/${user.email}`)
 .then(res => res.json())
 .then(data => setAdmin(data.admin))
 
@@ -123,16 +123,23 @@ fetch(`https://nameless-thicket-17201.herokuapp.com/users/${user.email}`)
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
         console.log(user)
-        fetch('https://nameless-thicket-17201.herokuapp.com/users', {
+        fetch('http://localhost:7000/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
+
+              
             },
             body: JSON.stringify(user)
         })
             .then()
+    //         res => res.json())
+    //         .then(data => {
+    //             console.log('data inside useToken',data)
+    //             const accessToken = data.token;
+    //             setToken(accessToken);
+    // }
     }
-
     return {
         user,
         token,

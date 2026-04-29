@@ -18,7 +18,7 @@ const UserForm = () => {
     const reviews = { review: reviewText, photo: photo, name: name, rating: value }
 
     const handleSubmit = e => {
-        fetch('https://nameless-thicket-17201.herokuapp.com/userReview', {
+        fetch('http://localhost:7000/userReview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +44,7 @@ const UserForm = () => {
 
             <TextField
                 required
-                sx={{ width: '100%' }}
+                style={{ width: '70%' }}
                 label="Your Review About Us"
                 name="review"
                 onBlur={handleOnBlur}

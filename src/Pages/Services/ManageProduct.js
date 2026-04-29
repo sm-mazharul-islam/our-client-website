@@ -14,13 +14,13 @@ import { IconButton, Rating, Stack } from '@mui/material';
 const ManageProduct = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://nameless-thicket-17201.herokuapp.com/addProducts')
+        fetch('http://localhost:7000/addProducts')
             .then(res => res.json())
             .then(data => setProducts(data))
     })
 
     const handleDelete = id => {
-        const url = `https://nameless-thicket-17201.herokuapp.com/addProducts/${id}`;
+        const url = `http://localhost:7000/addProducts/${id}`;
         fetch(url, {
             method: 'DELETE'
         })

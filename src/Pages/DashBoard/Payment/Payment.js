@@ -11,9 +11,10 @@ const stripePromise = loadStripe('pk_test_51KrHYXANFHZ1iUTPyIywXevgrPpQy4AAoJIsf
 
 const Payment = () => {
     const {productId} = useParams();
+    console.log(productId);
     const [order, setOrder] = useState({});
     useEffect(()=>{
-        fetch(`http://localhost:7000/order/${productId}`)
+        fetch(`http://localhost:7000/${productId}`)
         .then(res => res.json())
         .then(data => setOrder(data));
 

@@ -19,7 +19,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 import './Navigation.css'
 
-const pages = ['Home', 'Services', 'About'];
+const pages = ['Home', 'Services','CarParts','Car-Specialist', 'About','contact'];
 
 
 
@@ -49,6 +49,10 @@ const Navigation = () => {
                 break;
             case "Services": navigate('/services')
                 break;
+            case "Car-Specialist": navigate('/carSpecialist')
+                break;
+            case "CarParts": navigate('/carParts')
+                break;
             case "About": navigate('/about')
                 break;
             case "Contact": navigate('/contact')
@@ -65,7 +69,7 @@ const Navigation = () => {
     }
     return (
         <Box sx={{ flexGrow: 1 }} className="section">
-            <AppBar position="static" style={{ backgroundColor: "#9575cd" }} >
+            <AppBar position="static" style={{ backgroundColor: "" }} >
                 <Container maxWidth="xl" >
                     <Toolbar disableGutters >
                         <Typography

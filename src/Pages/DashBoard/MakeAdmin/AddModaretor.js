@@ -1,5 +1,6 @@
-import { Button, Input, TextField } from '@mui/material';
+import { Button, Grid, Input, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import Modaretors from '../../Home/Home/Modaretors/Modaretors';
 
 const AddModaretor = () => {
     const [name, setName] = useState('');
@@ -36,8 +37,12 @@ const handleSubmit = e =>{
 
 
     return (
-        <div>
-            <h3>Add a Modaretor</h3>
+        <div >
+
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={6} >
+<div style={{border:'1px solid gray', background:'linear-gradient(90deg, rgba(2,0,36,1) 9%, rgba(0,212,255,1) 71%, rgba(9,9,121,1) 100%)', width:'100%', margin:'auto'}} >
+                <h3>Add a Modaretor</h3>
             <form onSubmit={handleSubmit}>
                 <TextField 
                 sx={{width:'50%'}}
@@ -58,14 +63,20 @@ const handleSubmit = e =>{
   <Input accept="image/*"
   type="file"
   onChange={e => setImage(e.target.files[0])}
+  
+  sx={{width:'50%', marginTop:'10px'}}
   />
   <br />
-  <Button variant="contained" type="submit">
+  <Button variant="contained" type="submit" style={{marginTop:'10px', marginBottom:'10px'}}>
     Add Modaretor
   </Button>
 
             </form>
             {success && <p style={{color:'green'}}>{success}</p>}
+            </div>
+                </Grid>
+            </Grid>
+            <Modaretors/>
         </div>
     );
 };

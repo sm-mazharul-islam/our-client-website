@@ -1,8 +1,8 @@
 .order form {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 
 
 
@@ -10,10 +10,10 @@
 
 .order {
 
-    margin-top: 300px;
+    /* margin-top: 300px; */
     margin-bottom: 80px;
-    margin-left: 200px;
-    width: 80%;
+    /* margin-left: 200px; */
+    width: 350px;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
     /* background-color: #c5cae9; */
 

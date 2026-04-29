@@ -3,6 +3,8 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 
 import '../DashBoard/AddProduct.css'
+import ManageProduct from '../Services/ManageProduct';
+import ManageOrder from './ManageOrder';
 const AddProduct = () => {
 
 
@@ -10,7 +12,7 @@ const AddProduct = () => {
     const onSubmit = data => {
         console.log(data);
 
-        axios.post("https://nameless-thicket-17201.herokuapp.com/addProducts", data)
+        axios.post("http://localhost:7000/addProducts", data)
             .then(res => {
 
                 if (res.data.insertedId) {
@@ -30,6 +32,7 @@ const AddProduct = () => {
                 <textarea {...register("about")} placeholder="about" />
                 <input type="submit" />
             </form>
+            <ManageProduct></ManageProduct>
         </div>
     );
 };

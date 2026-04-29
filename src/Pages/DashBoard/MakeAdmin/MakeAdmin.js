@@ -15,7 +15,7 @@ setEmail(e.target.value);
 }
     const handleAdminSubmit = e =>{
 const user ={email};
-        fetch('https://nameless-thicket-17201.herokuapp.com/users/admin',{
+        fetch('http://localhost:7000/users/admin',{
             method:'PUT',
             headers:{
                 'authorization':`Bearer ${token}`,

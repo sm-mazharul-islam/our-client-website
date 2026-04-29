@@ -87,7 +87,7 @@ transaction: paymentIntent.client_secret.slice('_secret')[0]
 }
 
 
-const url = `http://localhost:7000/order/${_id}`;
+const url = `http://localhost:7000/${_id}`;
 fetch(url,{
   method:'PUT',
   headers:{
