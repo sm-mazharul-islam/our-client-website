@@ -19,6 +19,7 @@
     "react-countup": "^6.2.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.29.0",
+    "react-image-lightbox": "^5.1.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "swiper": "^8.1.0",

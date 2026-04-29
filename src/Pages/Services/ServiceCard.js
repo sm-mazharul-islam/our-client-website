@@ -1,68 +1,85 @@
-import React, { } from 'react';
-
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-
-import { Button, Grid, Rating, Stack } from '@mui/material';
-import { Link } from 'react-router-dom';
-
-import './ServiceCard.css'
+import React from "react";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+  Rating,
+  Box,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import SettingsIcon from "@mui/icons-material/Settings";
+import "./ServiceCard.css";
 
 const ServiceCard = ({ article }) => {
-    const { _id, name, picture, price, rating } = article
-    // console.log(props.article);
-    return (
- 
-            <div>
-            <Grid  >
-                <Card sx={{ maxWidth: 345 }} className='card1'  >
-            
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        image={picture}
-                        alt="Paella dish"
-                    />
-                    <CardContent>
-                        <Typography
-                            variant="body2" color="text.secondary" style={{ color: 'black', paddingBottom: '5px', fontSize:'20px' }}>
-                            {/* Brand Name :  */}
-                            <b> {name} </b>
-                        </Typography>
-                        <Typography
-                            variant="body2" color="text.secondary">
-                            {/* Description : {about} */}
-                        </Typography>
-                        <Typography
-                            variant="body2" color="text.secondary"
-                            style={{ color: 'black', paddingTop: '5px', fontSize:'20px'}}
-                        >
-                            Price : <b style={{ fontSize:'30px' }}> {price} </b>
-                        </Typography>
-                        <Stack spacing={1}  style={{ marginLeft: '95px' }}>
-                            <Rating sx={{color:'blue'}} name="half-rating"  defaultValue={rating} precision={0.5} readOnly />
+  const { _id, name, picture, rating, about } = article;
 
-                        </Stack>
-                    </CardContent>
+  const shortId = _id ? _id.toString().slice(-4) : "0000";
 
-                    <Stack spacing={2}>
-                        <Link
-                            style={{ textDecoration: 'none', display: "block", paddingBottom: "40px" }}
-                            to={`/details/${_id}`}>
-                            <Button style={{background:'blue', color:'white'}} className='btn2'>See Details</Button>
-                        </Link>
-                    </Stack>
-                </Card>
-            </Grid>
-            
-        </div>
+  return (
+    <>
+      <Box className="card-outer-wrapper">
+        <Card className="premium-car-card">
+          {/* Fixed Height Image Section */}
+          <Box className="card-visual-area">
+            <CardMedia
+              component="img"
+              image={picture}
+              alt={name}
+              className="car-display-img"
+            />
+            {/* ID Tag instead of Price */}
+            <div className="chassis-tag">
+              <SettingsIcon sx={{ fontSize: "12px", mr: 0.5 }} />
+              REF-{shortId}
+            </div>
+            <div className="image-overlay-gradient" />
+          </Box>
 
+          <CardContent className="card-body-fixed">
+            {/* Fixed Height Content Area */}
+            <Box sx={{ height: "120px", overflow: "hidden" }}>
+              <Typography variant="h6" className="luxury-car-title">
+                {name}
+              </Typography>
 
-    )
+              <Typography variant="body2" className="luxury-car-desc">
+                {about
+                  ? about.split(" ").slice(0, 10).join(" ") + "..."
+                  : "Elite performance meets unmatched luxury for your journey."}
+              </Typography>
 
+              <Box className="rating-flex">
+                <Rating
+                  value={Number(rating)}
+                  precision={0.5}
+                  readOnly
+                  size="small"
+                  sx={{ color: "#2563eb" }}
+                />
+                <span className="rating-count">({rating})</span>
+              </Box>
+            </Box>
+
+            {/* Action Button always stays at the bottom */}
+            <Link to={`/details/${_id}`} style={{ textDecoration: "none" }}>
+              <Button
+                fullWidth
+                className="luxury-action-btn"
+                endIcon={
+                  <ArrowForwardIosIcon sx={{ fontSize: "12px !important" }} />
+                }
+              >
+                Explore Machine
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </Box>
+    </>
+  );
 };
 
 export default ServiceCard;
-

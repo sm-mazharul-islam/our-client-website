@@ -7,15 +7,15 @@ import { Container, Rating, Box, Typography, Avatar } from "@mui/material";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./Testimonial.css";
+import { BASE_URL } from "../../../utils/constants";
 
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
 
   // Base URL - Replace with your deployed server link later
-  const baseUrl = "http://localhost:7000";
 
   useEffect(() => {
-    fetch(`${baseUrl}/userReview`)
+    fetch(`${BASE_URL}/userReview`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((err) => console.log("Fetch error:", err));

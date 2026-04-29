@@ -4,12 +4,13 @@ import { useForm } from "react-hook-form";
 
 import "../DashBoard/AddProduct.css";
 import ManageProduct from "../Services/ManageProduct";
+import { BASE_URL } from "../../utils/constants";
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     console.log(data);
 
-    axios.post("http://localhost:7000/addProducts", data).then((res) => {
+    axios.post(`${BASE_URL}/addProducts`, data).then((res) => {
       if (res.data.insertedId) {
         alert("Information Collected");
         reset();

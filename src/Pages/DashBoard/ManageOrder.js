@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
+import { BASE_URL } from "../../utils/constants";
 
 const ManageOrder = () => {
   useEffect(() => {
-    fetch("http://localhost:7000/order")
+    fetch(`${BASE_URL}/order`)
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, []);

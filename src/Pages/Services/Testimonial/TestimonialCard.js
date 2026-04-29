@@ -8,20 +8,19 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./TestimonialCard.css";
+import { BASE_URL } from "../../../utils/constants";
 
 export default function TestimonialCard() {
   const [car, setCar] = useState([]);
 
   // Base URL Handle
-  const baseUrl =
-    "https://your-server-site-name.vercel.app" || "http://localhost:7000";
 
   useEffect(() => {
-    fetch(`${baseUrl}/userReview`)
+    fetch(`${BASE_URL}/userReview`)
       .then((res) => res.json())
       .then((data) => setCar(data))
       .catch((err) => console.log(err));
-  }, [baseUrl]);
+  }, [BASE_URL]);
 
   return (
     <Box sx={{ py: 8, background: "#f9f9f9" }}>

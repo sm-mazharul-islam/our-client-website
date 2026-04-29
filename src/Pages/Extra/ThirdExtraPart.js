@@ -13,7 +13,6 @@ const ThirdExtraPart = () => {
         const rect = sectionRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        // ক্যালকুলেশন: সেকশনটি যখন ভিউপোর্টে আসবে তখন মুভমেন্ট শুরু হবে
         const start = rect.top - windowHeight;
         const total = rect.height + windowHeight;
         const progress = Math.min(Math.max(-start / total, 0), 1);

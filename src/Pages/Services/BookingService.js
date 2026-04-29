@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 
 import "./BookingService.css";
+import { BASE_URL } from "../../utils/constants";
 
 const BookingService = ({ service }) => {
   const { name, price, picture } = service || {};
@@ -38,7 +39,7 @@ const BookingService = ({ service }) => {
       status: "pending",
     };
     console.log(bookingInfo);
-    fetch("http://localhost:7000/order", {
+    fetch(`${BASE_URL}/order`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

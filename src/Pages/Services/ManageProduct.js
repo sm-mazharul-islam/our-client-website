@@ -8,17 +8,18 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
+import { BASE_URL } from "../../utils/constants";
 
 const ManageProduct = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:7000/addProducts")
+    fetch(`${BASE_URL}/addProducts`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   });
 
   const handleDelete = (id) => {
-    const url = `http://localhost:7000/addProducts/${id}`;
+    const url = `${BASE_URL}/addProducts/${id}`;
     fetch(url, {
       method: "DELETE",
     })

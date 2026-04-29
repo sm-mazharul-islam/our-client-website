@@ -11,6 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import initializeAuthentication from "../Pages/Firebase/firebase.init";
+import { BASE_URL } from "../utils/constants";
 
 // Initialize Firebase App
 initializeAuthentication();
@@ -26,8 +27,6 @@ const UseFireBase = () => {
   const googleProvider = new GoogleAuthProvider();
 
   // API base URL - replace localhost with your deployed server link if available
-  const baseUrl =
-    "https://your-server-site-name.vercel.app" || "http://localhost:7000";
 
   // 1. Sign in with Google
   const signUsingGoogle = (location, navigate) => {
@@ -104,14 +103,22 @@ const UseFireBase = () => {
 
   // 5. Admin Status Check
   useEffect(() => {
-    if (user.email) {
-      fetch(`${baseUrl}/users/${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setAdmin(data.admin))
-        .catch((err) => console.log("Admin check error:", err));
+    if (user?.email && BASE_URL) {
+      fetch(`${BASE_URL}/users/${user.email}`)
+        .then((res) => {
+          if (!res.ok) throw new Error("Network response was not ok");
+          return res.json();
+        })
+        .then((data) => {
+          // যদি data.admin না থাকে তবে ফলব্যাক হিসেবে false সেট হবে
+          setAdmin(!!data.admin);
+        })
+        .catch((err) => {
+          console.error("Admin check error:", err);
+          setAdmin(false); // এরর হলে সেফটি হিসেবে অ্যাডমিন ফলস রাখা ভালো
+        });
     }
-  }, [user.email, baseUrl]);
-
+  }, [user?.email]);
   // 6. Log Out
   const logout = () => {
     setIsLoading(true);
@@ -128,7 +135,7 @@ const UseFireBase = () => {
   // 7. Save User to Database
   const saveUser = (email, displayName, method) => {
     const userData = { email, displayName };
-    fetch(`${baseUrl}/users`, {
+    fetch(`${BASE_URL}/users`, {
       method: method,
       headers: {
         "content-type": "application/json",

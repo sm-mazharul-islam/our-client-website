@@ -4,19 +4,20 @@ import { Grid, IconButton } from "@mui/material";
 import UseAuth from "../../Hooks/UseAuth";
 import { Link } from "react-router-dom";
 import "./DashBoardHome.css";
+import { BASE_URL } from "../../utils/constants";
 
 const DashBoardHome = () => {
   const { user } = UseAuth();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:7000/order?email=${user.email}`;
+    const url = `${BASE_URL}/order?email=${user.email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   });
 
   const handleDelete = (id) => {
-    const url = `http://localhost:7000/order/${id}`;
+    const url = `${BASE_URL}/order/${id}`;
     fetch(url, {
       method: "DELETE",
     })

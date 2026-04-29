@@ -14,8 +14,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useNavigate } from "react-router";
-import { NavLink } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import "./Navigation.css";
 
@@ -31,10 +30,12 @@ const pages = [
 const Navigation = () => {
   const { user, logout } = UseAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
-  // স্ক্রল করলে নেভিগেশন বারের ব্যাকগ্রাউন্ড চেঞ্জ হবে
+  const isHomePage = location.pathname === "/" || location.pathname === "/home";
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -57,10 +58,16 @@ const Navigation = () => {
     handleCloseNavMenu();
   };
 
+  const navTextColor = isHomePage
+    ? scrolled
+      ? "#1e293b"
+      : "white"
+    : "#1e293b";
+
   return (
     <AppBar
       position="fixed"
-      className={`nav-master ${scrolled ? "nav-scrolled" : "nav-transparent"}`}
+      className={`nav-master ${scrolled || !isHomePage ? "nav-scrolled" : "nav-transparent"}`}
       elevation={scrolled ? 4 : 0}
     >
       <Container maxWidth="xl">
@@ -81,11 +88,21 @@ const Navigation = () => {
               className="nav-logo"
               src="https://d1yei2z3i6k35z.cloudfront.net/1733607/620e3a5d78eeb_Risorsa8.png"
               alt="Besa Logo"
+              style={{
+                filter:
+                  scrolled || !isHomePage ? "none" : "brightness(0) invert(1)",
+              }}
             />
           </Typography>
 
           {/* Mobile Menu Icon */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              color: navTextColor,
+            }}
+          >
             <IconButton
               size="large"
               onClick={handleOpenNavMenu}
@@ -122,6 +139,10 @@ const Navigation = () => {
               className="nav-logo-mobile"
               src="https://d1yei2z3i6k35z.cloudfront.net/1733607/620e3a5d78eeb_Risorsa8.png"
               alt="Besa Logo"
+              style={{
+                filter:
+                  scrolled || !isHomePage ? "none" : "brightness(0) invert(1)",
+              }}
             />
           </Typography>
 
@@ -138,7 +159,7 @@ const Navigation = () => {
                 key={page}
                 onClick={() => handleNavClicked(page)}
                 className="nav-link-btn"
-                sx={{ mx: 1, color: scrolled ? "#1e293b" : "white" }}
+                sx={{ mx: 1, color: navTextColor }}
               >
                 {page}
               </Button>
@@ -149,10 +170,7 @@ const Navigation = () => {
           <Box
             sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}
           >
-            <IconButton
-              className="cart-icon-btn"
-              sx={{ color: scrolled ? "white" : "white" }}
-            >
+            <IconButton className="cart-icon-btn" sx={{ color: navTextColor }}>
               <AddShoppingCartIcon />
             </IconButton>
 
@@ -167,11 +185,18 @@ const Navigation = () => {
                 <Button
                   className="dashboard-btn"
                   onClick={() => navigate("/dashboard")}
-                  sx={{ display: { xs: "none", md: "inline-flex" } }}
+                  sx={{
+                    display: { xs: "none", md: "inline-flex" },
+                    color: navTextColor,
+                  }}
                 >
                   Dashboard
                 </Button>
-                <Button className="logout-btn" onClick={logout}>
+                <Button
+                  className="logout-btn"
+                  onClick={logout}
+                  sx={{ color: "#ef4444" }}
+                >
                   Logout
                 </Button>
               </Box>
@@ -179,10 +204,11 @@ const Navigation = () => {
               <Button
                 className="login-btn"
                 onClick={() => navigate("/login")}
-                variant={scrolled ? "contained" : "outlined"}
+                variant={scrolled || !isHomePage ? "contained" : "outlined"}
                 sx={{
-                  color: scrolled ? "white" : "white",
-                  borderColor: "white",
+                  color: scrolled || !isHomePage ? "white" : "white",
+                  borderColor: isHomePage ? "white" : "#2563eb",
+                  bgcolor: scrolled || !isHomePage ? "#2563eb" : "transparent",
                 }}
               >
                 Login
