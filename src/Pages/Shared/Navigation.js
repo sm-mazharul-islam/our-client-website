@@ -1,184 +1,198 @@
+import React, { useState, useEffect } from "react";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Button,
+  MenuItem,
+  Avatar,
+  Tooltip,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useNavigate } from "react-router";
+import { NavLink } from "react-router-dom";
+import UseAuth from "../../Hooks/UseAuth";
+import "./Navigation.css";
 
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router';
-import { NavLink } from 'react-router-dom';
-import UseAuth from '../../Hooks/UseAuth';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-
-
-import './Navigation.css'
-
-const pages = ['Home', 'Services','CarParts','Car-Specialist', 'About','contact'];
-
-
+const pages = [
+  "Home",
+  "Services",
+  "CarParts",
+  "Car-Specialist",
+  "About",
+  "Contact",
+];
 
 const Navigation = () => {
-    // const { user, logout } = useAuth()
-   
-    const { user, logout } = UseAuth()
-    let navigate = useNavigate();
+  const { user, logout } = UseAuth();
+  const navigate = useNavigate();
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
+  // স্ক্রল করলে নেভিগেশন বারের ব্যাকগ্রাউন্ড চেঞ্জ হবে
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+  const handleNavClicked = (page) => {
+    const path =
+      page === "Home" ? "/home" : `/${page.toLowerCase().replace("-", "")}`;
+    navigate(path);
+    handleCloseNavMenu();
+  };
 
+  return (
+    <AppBar
+      position="fixed"
+      className={`nav-master ${scrolled ? "nav-scrolled" : "nav-transparent"}`}
+      elevation={scrolled ? 4 : 0}
+    >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          {/* LOGO - Desktop */}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/home")}
+          >
+            <img
+              className="nav-logo"
+              src="https://d1yei2z3i6k35z.cloudfront.net/1733607/620e3a5d78eeb_Risorsa8.png"
+              alt="Besa Logo"
+            />
+          </Typography>
 
+          {/* Mobile Menu Icon */}
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: "block", md: "none" } }}
+              PaperProps={{ className: "mobile-menu-paper" }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={() => handleNavClicked(page)}>
+                  <Typography textAlign="center" className="mobile-link">
+                    {page}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
 
-    const handleNavClicked = (page) => {
-        switch (page) {
+          {/* LOGO - Mobile */}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+          >
+            <img
+              className="nav-logo-mobile"
+              src="https://d1yei2z3i6k35z.cloudfront.net/1733607/620e3a5d78eeb_Risorsa8.png"
+              alt="Besa Logo"
+            />
+          </Typography>
 
-            case "Home": navigate('/home')
-                break;
-            case "Services": navigate('/services')
-                break;
-            case "Car-Specialist": navigate('/carSpecialist')
-                break;
-            case "CarParts": navigate('/carParts')
-                break;
-            case "About": navigate('/about')
-                break;
-            case "Contact": navigate('/contact')
-                break;
-            // case "DashBoard": navigate('/dashboard')
-            //     break;
-            default: navigate('/home')
-        }
+          {/* Navigation Links - Desktop */}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+            }}
+          >
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={() => handleNavClicked(page)}
+                className="nav-link-btn"
+                sx={{ mx: 1, color: scrolled ? "#1e293b" : "white" }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
 
+          {/* Right Side Icons & Auth */}
+          <Box
+            sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}
+          >
+            <IconButton
+              className="cart-icon-btn"
+              sx={{ color: scrolled ? "white" : "white" }}
+            >
+              <AddShoppingCartIcon />
+            </IconButton>
 
-    }
-    const handleLogOut = () => {
-        logout()
-    }
-    return (
-        <Box sx={{ flexGrow: 1 }} className="section">
-            <AppBar position="static" style={{ backgroundColor: "" }} >
-                <Container maxWidth="xl" >
-                    <Toolbar disableGutters >
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ mr: 2, fontSize: "1.5rem", display: { xs: 'none', md: 'flex' } }}
-
-                        >
-                            <img width={100} src="https://d1yei2z3i6k35z.cloudfront.net/1733607/620e3a5d78eeb_Risorsa8.png" alt="" />
-                        </Typography>
-
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorElNav}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'left',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
-                                }}
-                                open={Boolean(anchorElNav)}
-                                onClose={handleCloseNavMenu}
-                                sx={{
-                                    display: { xs: 'block', md: 'none' },
-                                }}
-                            >
-                                {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center" onClick={() => handleNavClicked(page)}>{page}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </Box>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                        >
-
-                        </Typography>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {pages.map((page) => (
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    <Typography onClick={() => handleNavClicked(page)}>
-                                        {page}
-                                    </Typography>
-                                </Button>
-                            ))}
-                        </Box>
-
-
-                        <Box sx={{ flexGrow: 0 }}>
-                            {
-                                user.email ? <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "space-around",
-                                        alignItems: "center"
-                                    }}
-                                >
-                                    <Box sx={{ display: { xs: 'none', md: 'flex' }, marginLeft: '100px' }}  >{user.displayName}</Box>
-                                    <img src={user.photoURL} style={{ borderRadius: "80%", width: "12%" }} alt="" />
-
-                                    <NavLink style={{
-                                        textDecoration: 'none',
-                                        color: 'white'
-                                    }}
-                                        to="/dashboard" ><Button color="inherit"  >Dashboard</Button></NavLink>
-                                    <Button
-                                        style={{
-                                            textDecoration: 'none',
-                                            color: 'white'
-                                        }}
-                                        onClick={handleLogOut}
-                                    >Logout </Button>
-                                </div> : <NavLink style={{
-                                    textDecoration: 'none',
-                                    color: 'white'
-                                }}
-                                    to="/login" ><Button color="inherit"  >Login</Button></NavLink>
-                            }
-                        </Box>
-                        
-           <AddShoppingCartIcon></AddShoppingCartIcon>
-                    </Toolbar>
-                </Container>
-            </AppBar>
-        </Box>
-    );
+            {user.email ? (
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Tooltip title={user.displayName}>
+                  <Avatar
+                    src={user.photoURL}
+                    sx={{ border: "2px solid #2563eb" }}
+                  />
+                </Tooltip>
+                <Button
+                  className="dashboard-btn"
+                  onClick={() => navigate("/dashboard")}
+                  sx={{ display: { xs: "none", md: "inline-flex" } }}
+                >
+                  Dashboard
+                </Button>
+                <Button className="logout-btn" onClick={logout}>
+                  Logout
+                </Button>
+              </Box>
+            ) : (
+              <Button
+                className="login-btn"
+                onClick={() => navigate("/login")}
+                variant={scrolled ? "contained" : "outlined"}
+                sx={{
+                  color: scrolled ? "white" : "white",
+                  borderColor: "white",
+                }}
+              >
+                Login
+              </Button>
+            )}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 };
 
 export default Navigation;

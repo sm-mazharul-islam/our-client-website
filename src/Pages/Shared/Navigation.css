@@ -1,44 +1,106 @@
-.ccsticky-nav {
-    width: 100%;
-    height: 60px;
-    position: fixed;
-    top: 0;
-    background: #139ed8;
+/* Base Navbar Transition */
+.nav-master {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 10px 0;
 }
 
-.ccsticky-nav ul {
-    padding: 20px;
-    margin: 0 auto;
-    list-style: none;
-    text-align: center;
+/* Transparent State */
+.nav-transparent {
+  background-color: transparent !important;
 }
 
-.ccsticky-nav ul li {
-    display: inline-block;
-    margin: 0 10px;
+/* Scrolled State - Glassmorphism */
+.nav-scrolled {
+  background-color: rgba(31, 105, 218, 0.85) !important;
+  backdrop-filter: blur(12px);
+  padding: 5px 0;
+  /* border-bottom: 1px solid rgba(226, 232, 240, 0.8); */
 }
 
-.ccsticky-nav ul li a {
-    padding: 10px 0;
-    color: #fff;
-    font-size: 1rem;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.2s ease;
+.nav-scrolled .nav-link-btn {
+  color: #edeff1 !important;
 }
 
-.ccsticky-nav ul li a:hover {
-    color: #34495E;
+/* Logo Sizing */
+.nav-logo {
+  height: 45px;
+  transition: 0.3s;
 }
 
-.section {
-    /* width: 100%;
-    padding: 50px;
-    background: #fff;
-    border-bottom: 1px solid #ccc;
-    height: 1024px;
-    text-align: center;
-    margin-top: 60px; */
-    /* position: sticky;
-   top:0px; */
+.nav-logo-mobile {
+  height: 35px;
+}
+
+/* Desktop Navigation Buttons */
+.nav-link-btn {
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  position: relative;
+  text-transform: capitalize !important;
+}
+
+.nav-link-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #2563eb;
+  transition: 0.3s;
+  transform: translateX(-50%);
+}
+
+.nav-link-btn:hover::after {
+  width: 70%;
+}
+
+/* Auth Buttons */
+.login-btn {
+  border-radius: 50px !important;
+  padding: 6px 25px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+.nav-scrolled .login-btn {
+  background-color: #2563eb !important;
+  color: white !important;
+}
+
+.logout-btn {
+  color: #b80000 !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+.dashboard-btn {
+  color: #ededf0 !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+/* Cart Icon Pulse Effect */
+.cart-icon-btn {
+  transition: 0.3s;
+}
+
+.cart-icon-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* Mobile Menu Styling */
+.mobile-menu-paper {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 15px !important;
+  margin-top: 10px;
+}
+
+.mobile-link {
+  font-weight: 700;
+  color: #1e293b;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
