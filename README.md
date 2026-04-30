@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# 🏎️ [Besa Luxury Rental](https://besa-luxury-rental.vercel.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Besa Luxury Rental** is a high-end, full-stack web application designed for a premium car rental experience. Built with the **MERN Stack** (MongoDB, Express, React, Node.js), this project focuses on a "gorgeous," minimalist, and modern UI/UX to match the luxury of the vehicles provided.
 
-## Available Scripts
+> **⚠️ Work in Progress:** This project is currently under active development. Some features are partially implemented, and optimization is ongoing.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Key Features (Implemented)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Modern Hero Section:** A sleek, high-conversion banner featuring a floating car animation and a professional call-to-action.
+- **Dynamic Data Fetching:** Integrated environment variables (`BASE_URL`) to seamlessly switch between local development and production APIs.
+- **Production Optimized:** Successfully configured production builds using `CI=false` to ensure stability across different environments.
+- **Responsive UI:** Fully responsive design using **Material UI** and custom CSS for a premium mobile-first experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend:** React.js, Material UI (MUI), Framer Motion (for animations).
+- **Backend:** Node.js, Express.js (Work in progress).
+- **Database:** MongoDB (Work in progress).
+- **Deployment:** Vercel (Frontend).
+- **Styling:** Tailwind CSS & MUI System.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚧 Upcoming Features (Roadmap)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [ ] **User Authentication:** Secure login/signup for customers.
+- [ ] **Car Discovery Engine:** Advanced filtering by brand, price, and category.
+- [ ] **Booking Management:** A dashboard for users to track their rental history.
+- [ ] **Payment Integration:** Secure checkout for reservations.
+- [ ] **Admin Dashboard:** Total control over car inventory and booking status.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+### 1. Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Ensure you have the following installed:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Node.js** (v16.x or higher recommended)
+- **npm** or **yarn**
+- **Git**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Related
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This is an important issue that I faced. Take a look and read it if you want.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[I recommend reading the blog posts. ](https://sm-mazharul-islam.vercel.app/insights/69f31bc38a636e01a7b55184)
