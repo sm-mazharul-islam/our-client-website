@@ -16,7 +16,7 @@ const Banner = () => {
           <Grid item xs={12} md={5}>
             <Box className="hero-content">
               <Typography variant="overline" className="hero-subtitle">
-                // Premium Experience
+                Premium Experience
               </Typography>
               <Typography variant="h2" className="hero-title">
                 Drive Your Favorite{" "}
