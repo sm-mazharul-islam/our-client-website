@@ -30,7 +30,7 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ElectricCarIcon from "@mui/icons-material/ElectricCar";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosNewIcon from '@mui/icons-material/ArrowForwardIosNew';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const SingleService = () => {
   const { _id } = useParams();
   const navigate = useNavigate();
@@ -185,7 +185,7 @@ const SingleService = () => {
                 p: 2,
               }}
             >
-              <ArrowForwardIosNewIcon fontSize="large" />
+              <ArrowForwardIosIcon fontSize="large" />
             </IconButton>
 
             {/* Counter */}
