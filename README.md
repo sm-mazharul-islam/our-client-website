@@ -2,8 +2,6 @@
 
 **Besa Luxury Rental** is a high-end, full-stack web application designed for a premium car rental experience. Built with the **MERN Stack** (MongoDB, Express, React, Node.js), this project focuses on a "gorgeous," minimalist, and modern UI/UX to match the luxury of the vehicles provided.
 
-> **⚠️ Work in Progress:** This project is currently under active development. Some features are partially implemented, and optimization is ongoing.
-
 ---
 
 ## ✨ Key Features (Implemented)
